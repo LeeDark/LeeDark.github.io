@@ -1,7 +1,7 @@
 baseURL = 'https://leedark.github.io/'
 languageCode = 'en-us'
 title = "Lee's Personal & Blogging"
-theme = 'basic'
+# theme = 'basic'
 
 [caches]
     [caches.images]
