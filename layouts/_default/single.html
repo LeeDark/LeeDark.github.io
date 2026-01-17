@@ -1,5 +1,7 @@
-<body>
-    <h1>{{ .Site.Title }}</h1>
-    <h2>{{ .Title }}</h2>
+{{ define "title" }}{{ .Title }}{{ end }}
+{{ define "main" }}
+<article>
+    <h1>{{ .Title }}</h1>
     {{ .Content }}
-</body>
+</article>
+{{ end }}

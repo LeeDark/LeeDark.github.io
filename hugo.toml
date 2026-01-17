@@ -2,7 +2,17 @@ baseURL = 'https://leedark.github.io/'
 languageCode = 'en-us'
 title = "Lee's Personal & Blogging"
 # theme = 'basic'
+enableRobotsTXT = true
+
+[taxonomies]
+# tag = "tags"
+# category = "categories"
+
+[pagination]
+pagerSize = 10
+path = "page"
+disableAliases = false
 
 [caches]
-    [caches.images]
-        dir = ':cacheDir/images'
+[caches.images]
+dir = ':cacheDir/images'
