@@ -3,6 +3,11 @@ languageCode = 'en-us'
 title = "Lee's Personal & Blogging"
 theme = 'basic'
 enableRobotsTXT = true
+googleAnalytics = "G-873H41K7BV"
+
+[params]
+author = "Lee"
+description = "My Portfolio Site"
 
 [taxonomies]
 # tag = "tags"
