@@ -1,8 +1,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+<title>
+    {{- if .Page.IsHome -}}
+        {{ .Site.Title }}
+    {{- else -}}
+        {{ .Title }} - {{ .Site.Title }}
+    {{- end -}}
+</title>
 <meta name="author" content="{{ .Site.Params.author }}">
-<meta name="description" content="{{ .Site.Params.description }}">
+<meta name="description" content="
+    {{- with .Page.Description -}}
+        {{ . }}
+    {{- else -}}
+        {{ .Site.Params.description }}
+    {{- end -}}">
 {{ partialCached "head/css.html" . }}
 {{ partialCached "head/js.html" . }}
 <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
