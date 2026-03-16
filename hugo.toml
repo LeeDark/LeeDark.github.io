@@ -4,6 +4,7 @@ title = "Lee's Personal & Blogging"
 theme = 'basic'
 enableRobotsTXT = true
 googleAnalytics = "G-873H41K7BV"
+pygmentsUseClasses = true
 
 [params]
 author = "Lee"
@@ -12,8 +13,8 @@ gh_url = "https://api.github.com/users"
 gh_user = "LeeDark"
 
 [taxonomies]
-# tag = "tags"
-# category = "categories"
+tag = "tags"
+category = "categories"
 
 # [pagination]
 # pagerSize = 10

@@ -17,6 +17,7 @@
 {{ partialCached "head/css.html" . }}
 {{ partialCached "head/js.html" . }}
 <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/syntax.css" | relURL }}">
 {{/*  {{ partial "google_analytics.html" . }}  */}}
 
 {{ range .AlternativeOutputFormats -}}
