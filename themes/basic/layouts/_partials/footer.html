@@ -1,1 +1,5 @@
-<p>Copyright {{ now.Year }} Me.</p>
+<p>Copyright {{ now.Year }} {{ .Site.Params.author }}.
+{{ range .Site.Data.socialmedia.accounts }}
+    <a href="{{ .url }}">{{ .name }}</a>
+{{ end }}
+</p>

@@ -29,3 +29,7 @@
 
     {{ printf $link .Rel .MediaType.Type .Permalink $title | safeHTML }}
 {{- end }}
+
+{{ with .Keywords }}
+    <meta name="keywords" content="{{ delimit . ", " }}">
+{{ end }}

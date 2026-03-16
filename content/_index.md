@@ -1,3 +1,10 @@
+---
+title: 'Home'
+keywords:
+- Hugo
+- Blog
+- Projects
+---
 This is my portfolio.
 
 On this site, you'll find
