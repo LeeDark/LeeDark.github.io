@@ -14,13 +14,15 @@
         <header>
             <nav>
                 <a href="{{ "" | relURL }}">Home</a>
+                <a href="{{ "about/" | relURL }}">About</a>
+                <a href="{{ "resume/" | relURL }}">Resume</a>
+                <!--
+                <a href="{{ "notes/" | relURL }}">Notes</a>
                 <a href="{{ "blog/" | relURL }}">Blog</a>
                 <a href="{{ "projects/" | relURL }}">Projects</a>
-                <a href="{{ "notes/" | relURL }}">Notes</a>
-                <a href="{{ "resume/" | relURL }}">Resume</a>
                 <a href="{{ "hire/" | relURL }}">Hire</a>
+                -->
                 <a href="{{ "contact/" | relURL }}">Contact</a>
-                <a href="{{ "about/" | relURL }}">About</a>
             </nav>
         </header>
         <main>{{ block "main" . }}{{ end }}</main>
