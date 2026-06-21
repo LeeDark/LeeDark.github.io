@@ -2,9 +2,10 @@
 {{ define "main" }}
 <h1>{{ .Site.Title }}</h1>
 <p>A short slogan. What the site is about and why.</p>
+{{ .Content }}
 <h2>Recent Posts</h2>
 <ul>
-    {{ range first 5 ( where .Site.RegularPages "Section" "blog") }}
+    {{ range first 5 ( where .Site.RegularPages "Section" "posts") }}
     <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
     {{ end }}
 </ul>
