@@ -39,3 +39,7 @@ Moved nav and footer colors in `assets/css/main.scss` into `--surface` and `--su
 ## Task 10: Keyboard Focus
 
 Added a visible `a:focus-visible` outline in `assets/css/main.scss` so keyboard navigation is easier to follow.
+
+## Task 11: About And Resume Content
+
+Updated `content/about.md` and `content/resume.md` with CV- and GitHub-based content focused on Go backend engineering, telecom/messaging experience, production observability, selected projects, education, and languages.
