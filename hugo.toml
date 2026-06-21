@@ -12,7 +12,14 @@ description = "My Portfolio Site"
 gh_url = "https://api.github.com/users"
 gh_user = "LeeDark"
 
+[permalinks]
+posts = "posts/:year/:month/:slug/"
+year = "/posts/:slug/"
+month = "/posts/:slug/"
+
 [taxonomies]
+year = "year"
+month = "month"
 tag = "tags"
 category = "categories"
 

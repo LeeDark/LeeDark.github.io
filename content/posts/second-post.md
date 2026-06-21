@@ -1,8 +1,8 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
-date: {{ .Date }}
-year: "{{ dateFormat "2006" .Date }}"
-month: "{{ dateFormat "2006/01" .Date }}"
+title: "Second Post"
+date: 2026-04-14T09:32:00+03:00
+year: "2026"
+month: "2026/04"
 draft: false
 author: Serhii Povarnin
 categories:

@@ -1,6 +1,8 @@
 ---
 title: "First Post"
 date: 2026-03-16T14:43:58+02:00
+year: "2026"
+month: "2026/03"
 draft: false
 author: Serhii Povarnin
 categories:
