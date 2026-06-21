@@ -4,11 +4,11 @@ draft = false
 title = 'Home'
 +++
 
-This is my portfolio.
+This site collects my professional background, selected technical notes, and links to the projects I use for Go backend practice and reference.
 
-On this site, you'll find
+Start with:
 
-* My biography
-* My projects
-* My resume
-* My blog
+- [About](/about/) for a short profile
+- [Résumé](/resume/) for experience and skills
+- [Blog](/posts/) for technical writing
+- [Contact](/contact/) for ways to reach me

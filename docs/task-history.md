@@ -43,3 +43,7 @@ Added a visible `a:focus-visible` outline in `assets/css/main.scss` so keyboard 
 ## Task 11: About And Resume Content
 
 Updated `content/about.md` and `content/resume.md` with CV- and GitHub-based content focused on Go backend engineering, telecom/messaging experience, production observability, selected projects, education, and languages.
+
+## Task 12: Contact And Home Copy
+
+Updated `content/contact.md`, `content/_index.md`, and `layouts/index.html` with professional contact and homepage copy, added GitHub to contact links, and kept the homepage slogan only in the layout to avoid duplicated positioning text.
