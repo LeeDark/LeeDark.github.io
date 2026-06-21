@@ -1,12 +1,15 @@
 {{ define "title" }}{{ .Site.Title }}{{ end }}
 {{ define "main" }}
 <h1>{{ .Site.Title }}</h1>
-<p>A short slogan. What the site is about and why.</p>
+<p>Go backend engineer writing about web services, reliability, observability, and practical software engineering.</p>
 {{ .Content }}
 <h2>Recent Posts</h2>
 <ul>
     {{ range first 5 ( where .Site.RegularPages "Section" "posts") }}
-    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    <li>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <small> · {{ .Date.Format "2006-01-02" }}</small>
+    </li>
     {{ end }}
 </ul>
 {{ end }}

@@ -1,6 +1,6 @@
 +++
 date = '2025-11-22T17:48:37+02:00'
-draft = true
+draft = false
 title = 'My First Post'
 +++
 ## Introduction
