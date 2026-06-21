@@ -19,3 +19,23 @@ Updated the homepage recent-posts list in `layouts/index.html` to show each post
 ## Task 5: Site Metadata
 
 Added a default site description in `hugo.toml` and expanded the shared HTML head in `layouts/_default/baseof.html` with computed page titles, description metadata, canonical URLs, and basic Open Graph tags.
+
+## Task 6: Task History
+
+Created this task history document in `docs/task-history.md` to keep a concise record of completed site improvements.
+
+## Task 7: Basic Typography
+
+Added simple typography spacing in `assets/css/main.scss` for `main`, headings, paragraphs, and lists so pages and posts have clearer vertical rhythm.
+
+## Task 8: Content Width
+
+Changed the `.container` maximum width in `assets/css/main.scss` from `1100px` to `820px` to improve blog readability on wider screens.
+
+## Task 9: Nav And Footer Colors
+
+Moved nav and footer colors in `assets/css/main.scss` into `--surface` and `--surface-fg` variables, including dark-mode values.
+
+## Task 10: Keyboard Focus
+
+Added a visible `a:focus-visible` outline in `assets/css/main.scss` so keyboard navigation is easier to follow.
