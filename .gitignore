@@ -4,3 +4,9 @@
 /.hugo_build.lock
 
 .vscode/
+
+# Private planning notes for local task organization.
+# Public/committed docs should be written in English.
+/docs/content/
+/docs/private/
+/docs/*.ru.md
