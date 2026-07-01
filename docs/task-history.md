@@ -47,3 +47,7 @@ Updated `content/about.md` and `content/resume.md` with CV- and GitHub-based con
 ## Task 12: Contact And Home Copy
 
 Updated `content/contact.md`, `content/_index.md`, and `layouts/index.html` with professional contact and homepage copy, added GitHub to contact links, and kept the homepage slogan only in the layout to avoid duplicated positioning text.
+
+## Task 13: Baseline Roadmap
+
+Added `docs/roadmap.md` to capture Stage 1 action items for the Hugo baseline, branch workflow, generated-output rules, deferred theme decisions, and documentation follow-ups.
