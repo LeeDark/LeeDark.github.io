@@ -55,3 +55,7 @@ Added `docs/roadmap.md` to capture Stage 1 action items for the Hugo baseline, b
 ## Task 14: Project Context
 
 Added `docs/project-context.md` for project decisions, branch workflow, source-of-truth rules, theme status, content direction, and verification guidance. Updated `docs/project-overview.md` to link overview, context, and roadmap responsibilities.
+
+## Task 15: Portfolio README
+
+Added a root `README.md` as a public-facing repository overview for the personal Hugo site, including site purpose, visible engineering choices, tech stack, local commands, workflow notes, and links to supporting docs.
