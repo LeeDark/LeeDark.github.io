@@ -51,3 +51,7 @@ Updated `content/contact.md`, `content/_index.md`, and `layouts/index.html` with
 ## Task 13: Baseline Roadmap
 
 Added `docs/roadmap.md` to capture Stage 1 action items for the Hugo baseline, branch workflow, generated-output rules, deferred theme decisions, and documentation follow-ups.
+
+## Task 14: Project Context
+
+Added `docs/project-context.md` for project decisions, branch workflow, source-of-truth rules, theme status, content direction, and verification guidance. Updated `docs/project-overview.md` to link overview, context, and roadmap responsibilities.

@@ -2,6 +2,8 @@
 
 This is a Hugo personal site and blog published at `https://leedark.github.io/`.
 
+This document is a quick technical orientation. For working decisions and project background, see `docs/project-context.md`. For planned work, see `docs/roadmap.md`.
+
 ## Organization
 
 - `hugo.toml` is the main site configuration.
