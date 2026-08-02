@@ -23,6 +23,8 @@ Action items:
 4. Replace or unpublish the placeholder first post before treating the blog as public-ready.
 5. Run a Hugo build after content, layout, style, or config changes when possible.
 6. Do not edit `public/` or `resources/_gen/` directly.
+7. Add an explicit page description to the homepage so its meta description does not fall back to the full page summary.
+8. Refine `og:type` in `baseof.html`: use `article` for blog posts and `website` for the homepage, regular pages, and section pages.
 
 ## Stage 2: Projects
 
