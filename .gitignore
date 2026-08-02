@@ -5,8 +5,12 @@
 
 .vscode/
 
+# macOS Finder metadata
+.DS_Store
+
 # Private planning notes for local task organization.
 # Public/committed docs should be written in English.
 /docs/content/
+/docs/notes/
 /docs/private/
 /docs/*.ru.md
