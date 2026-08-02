@@ -1,0 +1,998 @@
+# AI-Augmented Development Workflow
+
+## Purpose
+
+This document describes a practical workflow for using AI tools in software development without
+losing engineering ownership, review discipline, or learning value.
+
+The goal is not to treat AI output as a finished result. The goal is to use AI as a planning,
+implementation, review, documentation, and learning assistant while keeping decisions, verification,
+and accountability with the developer.
+
+An AI-augmented developer:
+
+- uses AI intentionally for scoped tasks;
+- keeps ownership of architecture and code;
+- writes clear prompts with enough project context;
+- reviews generated changes before accepting them;
+- runs local checks when possible;
+- documents meaningful decisions;
+- uses AI to support learning, not replace practice;
+- uses Git as a review and safety checkpoint.
+
+## Scope
+
+This workflow is useful for:
+
+- backend development;
+- repository maintenance;
+- documentation updates;
+- code review;
+- testing practice;
+- structured learning;
+- public project presentation.
+
+This workflow does not replace:
+
+- source control discipline;
+- local builds and tests;
+- security review;
+- domain understanding;
+- architectural judgment;
+- manual debugging.
+
+## Instruction Surfaces And Responsibilities
+
+Keep durable instructions, workflow guidance, and current plans separate:
+
+```text
+current prompt
+  -> the task, mode, scope, and temporary constraints for this turn
+
+AGENTS.md
+  -> stable repository rules that coding agents should apply automatically
+
+ai-augmented-development-workflow.md
+  -> the full human-readable workflow, explanations, and reusable examples
+
+PLAN.md or the current roadmap
+  -> active priority, stage, sequencing, status, and deferred work
+
+architecture and decision documents
+  -> technical boundaries, accepted decisions, and project-specific design
+```
+
+The user's latest explicit task instruction takes precedence over workflow defaults. Keep
+`AGENTS.md` concise and operational; do not copy the entire workflow or current backlog into it.
+Read only the documents relevant to the task rather than loading every linked document by default.
+
+## Core Principles
+
+### 1. Ownership Stays With The Developer
+
+AI can suggest, draft, implement, review, and explain.
+
+The developer remains responsible for:
+
+- choosing the problem to solve;
+- deciding which solution fits the current project;
+- accepting or rejecting generated changes;
+- verifying behavior locally;
+- keeping documentation accurate;
+- understanding the final result.
+
+### 2. AI Output Is A Draft
+
+Generated code, text, tests, or plans should be treated as draft material until reviewed.
+
+AI output becomes useful only when it is:
+
+- understandable;
+- scoped;
+- consistent with the repository;
+- tested or otherwise verified;
+- documented when needed;
+- committed intentionally.
+
+### 3. Context Improves Output Quality
+
+AI tools work better when the task includes:
+
+- repository purpose;
+- current stage;
+- relevant files or folders;
+- constraints;
+- forbidden changes;
+- expected output;
+- verification steps;
+- stop condition.
+
+Vague prompts usually produce vague or oversized changes. Explicit task context reduces accidental
+rewrites and makes review easier.
+
+### 4. Small Tasks Are Easier To Review
+
+Prefer tasks that fit one clear task objective:
+
+- one feature;
+- one bug fix;
+- one document;
+- one test area;
+- one refactor;
+- one architectural question.
+
+Avoid broad requests such as:
+
+- improve the whole project;
+- refactor everything;
+- make it production-ready;
+- clean up unrelated code and documentation in one pass.
+
+### 5. Learning Requires Practice
+
+AI can explain concepts and generate exercises, but skill still comes from implementation, testing,
+debugging, and review.
+
+Recommended learning loop:
+
+```text
+concept -> explanation -> exercise -> implementation -> test -> review -> summary
+```
+
+## Standard Workflow
+
+Use this loop for AI-assisted development tasks:
+
+```text
+idea
+  -> clarify the task objective
+  -> convert the objective into a scoped task
+  -> choose the working mode
+  -> provide repository context
+  -> execute the task
+  -> review the diff
+  -> run checks
+  -> update documentation when needed
+  -> commit focused changes
+```
+
+## Task Objectives, Persistent Goals, And Token Budgets
+
+An ordinary task objective and a persistent Codex goal are different:
+
+```text
+task objective
+  -> the result requested in the current turn
+
+persistent Codex goal (`/goal`)
+  -> a target that remains attached to the chat across turns
+```
+
+Use an ordinary task objective by default. Create `/goal` only when the user explicitly requests a
+persistent goal and the agent can complete the result without waiting for user work.
+
+Good persistent goals:
+
+- implement one bounded change and run its checks;
+- inspect an existing diff and return a review;
+- perform a scoped analysis with a clear final artifact.
+
+Do not use a persistent goal for:
+
+- Tutor Mode;
+- Pair Programmer Mode;
+- waiting for the user to implement or answer;
+- one short question or review;
+- work that will resume manually later.
+
+A token budget is optional and belongs only to an explicit persistent goal. Set it only when the
+user explicitly specifies it. One budgeted goal should produce one bounded, agent-owned result with
+a reachable completion condition.
+
+Do not use `/goal pause` as a substitute for ending an interactive turn. When user input or
+implementation is required, finish the response and wait normally. Waiting is not a blocker, and the
+repository should not be polled while waiting.
+
+Use `/status` for current chat and context information and `/usage` for account usage when those
+commands are available. A persistent goal is not required to inspect usage.
+
+## Local Modes And Built-In Codex Mechanisms
+
+The working modes in this document are local workflow contracts. They become durable when defined in
+`AGENTS.md`; their names alone are not built-in Codex behavior.
+
+Built-in Codex mechanisms include:
+
+- `/plan`: enter planning mode before implementation;
+- `/review`: review a working tree, commit, or branch diff without editing it;
+- `/goal`: create and manage a persistent goal.
+
+`Tutor Mode`, `Pair Programmer Mode`, `Manager Mode`, `Documentation Mode`, and
+`Book or Source Study Mode` are project workflow labels. `Review Mode` and `Planning Mode` overlap
+with `/review` and `/plan`, but the local contracts may add project-specific rules.
+
+## Working Modes
+
+Different tasks need different operating modes. Stating the mode at the start of a prompt helps
+control scope and expected behavior. When `AGENTS.md` already defines the mode, the prompt can
+contain only the mode name and a task or document reference.
+
+### 1. Manager Mode
+
+Formula:
+
+```text
+Manager Mode: execute this scoped task step by step and report the result.
+```
+
+Use when:
+
+- the task is clear enough to delegate;
+- the expected output is concrete;
+- implementation or editing support is useful;
+- the change should remain small and controlled.
+
+Good for:
+
+- focused implementation tasks;
+- documentation updates;
+- README cleanup;
+- small refactors;
+- mechanical repository cleanup;
+- moving or renaming files when scope is explicit.
+
+Rules:
+
+- explain the approach before editing when the change is meaningful;
+- change only files in scope;
+- preserve existing project style;
+- run safe relevant checks when possible;
+- summarize changed files, checks, and remaining risks;
+- do not commit without explicit instruction.
+
+Main risk:
+
+- delegation can reduce learning if used before understanding the task.
+
+### 2. Pair Programmer Mode
+
+Formula:
+
+```text
+Pair Programmer Mode: I implement the first version; review it when I say it is ready.
+```
+
+Use when:
+
+- the first version was implemented manually;
+- the purpose is learning through feedback;
+- the task is architecture-sensitive;
+- review is more useful than replacement.
+
+Good for:
+
+- Go exercises;
+- handlers;
+- tests;
+- repository logic;
+- important first implementations;
+- naming and structure feedback.
+
+Rules:
+
+- before implementation, provide scoped guidance and acceptance criteria, then end the turn;
+- let the developer implement the first version;
+- wait until the developer says the implementation is ready for review;
+- do not rewrite the whole solution by default;
+- review the diff;
+- prioritize correctness and project fit;
+- suggest minimal changes;
+- explain what should be practiced next when useful;
+- do not poll the repository while waiting;
+- do not create a persistent goal or token budget;
+- treat waiting for the developer as a normal turn boundary, not a blocker.
+
+Main value:
+
+- the developer keeps implementation practice while still getting a second review pass.
+
+### 3. Tutor Mode
+
+Formula:
+
+```text
+Tutor Mode: explain the concept, guide practice, and avoid writing the final solution first.
+```
+
+Use when:
+
+- the topic needs explanation;
+- the task is not ready for implementation;
+- an exercise or learning path is needed;
+- passive copy-paste should be avoided.
+
+Good for:
+
+- Go language topics;
+- concurrency concepts;
+- web development fundamentals;
+- API design;
+- testing;
+- profiling and observability;
+- architecture discussions.
+
+Rules:
+
+- explain the concept clearly;
+- propose a small exercise;
+- ask checking questions when useful;
+- give hints before final answers when appropriate;
+- connect theory with practical code;
+- do not edit files or write the final implementation unless the mode changes;
+- end the turn after the exercise and wait for the developer;
+- do not poll the repository while waiting;
+- do not create a persistent goal or token budget;
+- treat waiting for the developer as a normal turn boundary, not a blocker.
+
+### 4. Review Mode
+
+Formula:
+
+```text
+Review Mode: inspect the change as a reviewer and do not edit files.
+```
+
+Use when:
+
+- a diff needs review;
+- generated changes need validation;
+- the work is close to commit;
+- feedback is needed without automatic fixes.
+
+Good for:
+
+- code review;
+- test review;
+- documentation review;
+- architecture review;
+- public-facing text review;
+- scope review.
+
+Rules:
+
+- list findings first;
+- order findings by severity;
+- include concrete file and line references when possible;
+- separate critical issues from suggestions;
+- mention test gaps and residual risk;
+- do not rewrite unless explicitly asked.
+
+### 5. Planning Mode
+
+Formula:
+
+```text
+Planning Mode: decompose the task into stages without implementation.
+```
+
+Use when:
+
+- the task is large;
+- the order of work is unclear;
+- several approaches are possible;
+- a Definition of Done is needed;
+- implementation should not start yet.
+
+Good for:
+
+- roadmaps;
+- learning tracks;
+- version planning;
+- project stages;
+- selecting the next few tasks.
+
+Rules:
+
+- define the task objective and constraints;
+- propose stages;
+- define outputs and Definition of Done;
+- explicitly name what to postpone;
+- avoid editing files unless the mode changes.
+
+### 6. Documentation Mode
+
+Formula:
+
+```text
+Documentation Mode: update only the requested documentation.
+```
+
+Use when:
+
+- the output is a README, plan, roadmap, task history, or repository context file;
+- code changes would be distracting;
+- written structure is the main deliverable.
+
+Good for:
+
+- README files;
+- plan files;
+- repository context;
+- public project descriptions;
+- technical notes;
+- task summaries.
+
+Rules:
+
+- touch only requested documents;
+- do not change implementation files;
+- preserve technical meaning;
+- avoid broad cosmetic rewrites;
+- keep public and internal documentation clearly separated.
+
+### 7. Book Or Source Study Mode
+
+Formula:
+
+```text
+Book Study Mode: understand the source and convert it into small practical tasks.
+```
+
+Use when:
+
+- studying a book, article, course, or technical documentation;
+- concepts need to be mapped to current practice;
+- useful exercises should be separated from irrelevant examples;
+- source material should not blindly dictate project architecture.
+
+Good for:
+
+- Go books and documentation;
+- web development material;
+- API design material;
+- testing resources;
+- profiling and observability resources.
+
+Rules:
+
+- summarize ideas in original wording;
+- avoid copying large source fragments;
+- extract key concepts;
+- map concepts to current projects;
+- classify ideas as apply now, postpone, or ignore;
+- switch to Tutor, Pair Programmer, or Manager Mode when implementation starts.
+
+## Default Mode Selection
+
+When no mode is specified, choose the safest interpretation:
+
+- questions and learning: Tutor Mode or Planning Mode;
+- inspect this: Review Mode;
+- do this: Manager Mode with a short plan first;
+- documents: Documentation Mode;
+- books, articles, or docs: Book Study Mode;
+- ambiguous requests: clarify scope before editing.
+
+## Mode Checklist
+
+Every significant AI-assisted task should answer:
+
+- What mode is this?
+- What is the task objective?
+- What is the scope?
+- What must not change?
+- What is the expected output?
+- How will the result be verified?
+- Should the assistant stop before editing or before the next logical step?
+- Does this task genuinely need a persistent `/goal`? The default answer is no.
+
+## Task Design
+
+A strong AI task includes:
+
+- working mode;
+- repository context;
+- current state;
+- task objective;
+- files or areas to inspect;
+- allowed files or areas;
+- forbidden files or areas;
+- constraints;
+- expected output;
+- verification steps;
+- documentation expectations;
+- stop condition.
+
+Good task design helps prevent:
+
+- unrelated changes;
+- oversized diffs;
+- accidental rewrites;
+- invented requirements;
+- documentation that no longer matches the code.
+
+## Implementation Loop
+
+Use this loop for AI-assisted code changes:
+
+```text
+prepare task
+  -> inspect relevant files
+  -> plan the smallest safe change
+  -> edit within scope
+  -> run formatting/checks/tests
+  -> review diff
+  -> document behavior changes
+  -> commit only after review
+```
+
+Useful checks may include:
+
+- `go test ./...`;
+- `go test` for a specific package;
+- `go vet`;
+- formatter checks;
+- linter checks when already part of the project;
+- manual `curl` checks for APIs;
+- browser checks for web interfaces.
+
+If a check cannot be run, record:
+
+- the command attempted;
+- why it failed;
+- whether the failure was environmental or code-related;
+- what should be run locally later.
+
+## Learning Loop
+
+Use this loop for AI-assisted study:
+
+```text
+topic
+  -> Tutor turn: short explanation and small exercise
+  -> end the turn and wait
+  -> developer implements manually
+  -> run or test
+  -> Pair Programmer review turn
+  -> short summary
+```
+
+Learning outputs should include at least one of:
+
+- code exercise;
+- test;
+- note in original wording;
+- reusable checklist;
+- comparison of approaches;
+- practical example connected to a project.
+
+## Documentation Loop
+
+Use this loop for AI-assisted documentation:
+
+```text
+identify audience
+  -> define purpose
+  -> inspect current files
+  -> update only relevant sections
+  -> verify commands and claims
+  -> review tone and scope
+```
+
+Public documentation should:
+
+- explain purpose, status, and usage clearly;
+- avoid overclaiming;
+- separate planned work from completed work;
+- include runnable commands when possible;
+- avoid exposing sensitive paths, internal planning, or unrelated project strategy.
+
+## Evaluation
+
+AI assistance should be evaluated by outcomes, not by volume of generated text.
+
+Useful indicators:
+
+- completed scoped tasks;
+- reviewed diffs;
+- tests or checks run;
+- rejected or revised generated changes;
+- documentation improved;
+- learning exercises completed manually;
+- recurring failure patterns identified;
+- follow-up tasks reduced rather than multiplied.
+
+The workflow is improving when:
+
+- tasks become smaller and clearer;
+- generated diffs become easier to review;
+- verification becomes more consistent;
+- documentation matches actual behavior;
+- fewer unrelated changes appear in a task.
+
+## Model And Usage Policy
+
+This section reflects the working policy as of 2026-07-30. Model names, availability, reasoning
+levels, and usage rates can change; verify the current model picker and official documentation
+before treating them as permanent project rules.
+
+- Use Luna for clear, repeatable, high-volume tasks such as summaries, documentation drafts, simple
+  Tutor turns, extraction, transformation, well-specified routine implementation, and tests.
+- Use Terra as the default for everyday Go development, technical tutoring, scoped implementation,
+  debugging, and normal code review.
+- Use Sol for genuinely ambiguous, cross-component, high-risk, or architecture-sensitive work.
+- Use the lowest reasoning level that reliably produces the needed result: Light/Low for clear
+  tasks, Medium for normal multi-step work, and High/Extra High for difficult analysis.
+- Treat Max and Ultra as exceptional. Max spends more reasoning on one task; Ultra uses subagents
+  for work that can be divided into meaningful independent parts.
+- Do not compensate for an unclear task by selecting a more expensive model. Reduce scope and
+  provide relevant context first.
+- Avoid persistent goals, repeated repository polling, unnecessary subagents, and long unrelated
+  chat context when an interactive or one-turn task is sufficient.
+
+Keep detailed or frequently changing model comparisons outside `AGENTS.md`. `AGENTS.md` should
+contain only a stable project default when one is genuinely needed.
+
+As of 2026-07-30, Luna and Terra consume fewer credits in paid Codex subscriptions. Treat this as a
+reason to re-evaluate well-specified work for Luna, not as a reason to use a weaker model where the
+cost of an incorrect result is high.
+
+### Model And Reasoning-Level Matrix
+
+Choose the model family for the nature and risk of the work, then choose the lowest reasoning level
+that can handle its complexity. The names below describe the current local model picker, not
+permanent product guarantees.
+
+| Need         | Luna                                                                        | Terra                                                                        | Sol                                                                                                     |
+|--------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| Light / Low  | Clear extraction, formatting, summaries, and simple documentation           | Small familiar code or documentation change                                  | Rarely justified; use only when a small task has unusually high risk                                    |
+| Medium       | Clear multi-step documentation or learning task                             | Default for everyday implementation, debugging, tutoring, and review         | Bounded architecture question or a difficult defect with meaningful uncertainty                         |
+| High / XHigh | Exception: only when a clear high-volume task still needs careful synthesis | Concurrency, integration, non-trivial design trade-offs, or difficult review | Cross-component architecture, high-risk decisions, or ambiguous failures where a wrong answer is costly |
+
+This is a selection guide, not a quality hierarchy. Move right only when the task requires more
+judgment or risk management; move down when the task is already well specified.
+
+### Route Models By Workflow Phase
+
+Do not assume that one model must perform every stage of a task. Use the strongest suitable model to
+remove uncertainty, then route the defined work to the least expensive model that can complete it
+reliably.
+
+```text
+ambiguous architecture, requirement, or defect
+  -> Sol: clarify constraints, alternatives, and implementation plan
+  -> Terra or Luna: implement bounded, well-specified changes
+  -> Luna: run or draft focused tests, verification, documentation, and summary
+```
+
+Terra Medium remains a practical default when implementation is still interactive or needs everyday
+technical judgment. Use Luna instead when the subtask and acceptance criteria are already clear.
+
+### Normal And Economical Codex Use
+
+Use the following sequence before increasing model cost or reasoning effort:
+
+```text
+state the mode and one task objective
+  -> link the one relevant plan, issue, or document
+  -> restrict the scope and expected output
+  -> select the smallest suitable model and reasoning level
+  -> run the narrowest relevant verification
+  -> start a new focused turn when the topic changes
+```
+
+- Prefer a clear task and relevant files over a larger context window or a stronger model.
+- Use Luna for low-risk, repeatable work; use Terra Medium as the normal daily starting point;
+  reserve Sol for work where deeper judgment materially changes the result.
+- Escalate one variable at a time: clarify the task first, then expand relevant context, then raise
+  reasoning level, and only then choose a stronger model if needed.
+- Keep Tutor and Pair Programmer turns short and interactive. The user can send the next exercise,
+  implementation, or diff when ready; do not spend tokens polling for it.
+- Use `/usage` to inspect account consumption and `/status` to inspect the current conversation when
+  those commands are available. Do not infer cost solely from the number of user messages.
+- Avoid Fast mode unless latency is worth its higher usage rate. Avoid Max, Ultra, and subagents
+  unless the expected quality or independent parallel work justifies their additional cost.
+- Do not use a persistent goal or token budget merely to keep a conversation alive. A fresh, scoped
+  turn is normally cheaper and easier to control.
+- Calibrate this policy with real repository tasks. Compare accepted-diff quality, number of
+  iterations, verification results, and `/usage`; do not change a personal default solely because of
+  a model announcement.
+
+### Model, Effort, And Mode Decision Flow
+
+```text
+Is this an interactive learning or pairing turn?
+  -> Yes: Tutor or Pair Programmer Mode; no persistent goal; Luna or Terra at Low/Medium.
+  -> No:
+     Is the task clear, low-risk, and repeatable?
+       -> Yes: Luna Low/Medium, including well-specified implementation and focused tests.
+       -> No:
+          Is it normal scoped development, debugging, or review?
+            -> Yes: Terra Medium; raise to High/XHigh only for genuine complexity.
+            -> No: Sol Medium/High for ambiguous, cross-component, or high-risk work.
+
+At every branch: clarify scope before escalating model or effort.
+```
+
+## Tool Usage Guidelines
+
+### Planning And Discussion Assistants
+
+Best for:
+
+- clarifying vague ideas;
+- decomposing work;
+- architecture discussion;
+- learning explanations;
+- writing and rewriting;
+- preparing implementation tasks;
+- summarizing progress.
+
+Avoid using them for:
+
+- final technical authority;
+- accepting code without verification;
+- security-sensitive decisions without additional review;
+- replacing hands-on practice.
+
+### Code Agents
+
+Best for:
+
+- scoped implementation;
+- tests;
+- small refactors;
+- documentation tied to code;
+- repository-aware cleanup;
+- review support.
+
+Rules:
+
+- provide repository context;
+- keep tasks focused;
+- review the diff;
+- run relevant checks;
+- reject code that cannot be explained or maintained.
+
+### Git
+
+Git is the control point for AI-assisted work.
+
+Rules:
+
+- use focused branches when appropriate;
+- inspect `git diff`;
+- keep commits small;
+- avoid mixing unrelated changes;
+- do not commit generated artifacts accidentally;
+- slow down when a diff becomes too large to review confidently.
+
+## Prompt Templates
+
+When the mode contracts already live in `AGENTS.md`, prefer the compact prompt. Use the expanded
+template only for complex or high-risk work.
+
+### Compact Daily Prompt
+
+```text
+<Mode>
+
+<Task or link to the task description>
+<Optional current step or narrow scope>
+```
+
+Examples:
+
+```text
+Tutor Mode
+
+@PLAN.md — Stage 1, Step 2.
+```
+
+```text
+Pair Programmer Mode
+
+@PLAN.md — Stage 1, Step 2.
+Start with scope and acceptance criteria.
+```
+
+```text
+Documentation Mode
+
+Update only the verification section in @README.md.
+```
+
+### Expanded Mode-Based Task Prompt
+
+```text
+Mode:
+- Manager / Pair Programmer / Tutor / Review / Planning / Documentation / Book Study
+
+Context:
+- Project/repository:
+- Current state:
+- Why this task matters:
+
+Scope:
+- Files/areas allowed:
+- Files/areas forbidden:
+- What must not change:
+
+Task:
+- Exact request:
+
+Verification:
+- Checks to run:
+- What will be verified locally:
+
+Stop condition:
+- Stop before editing / after plan / after one logical step / after summary.
+
+Expected output:
+- Plan, diff, review, document, exercise, or summary.
+```
+
+### Planning Prompt
+
+```text
+Context:
+- Project:
+- Current state:
+- Task objective:
+- Constraints:
+- What to avoid:
+
+Task:
+Break this into small, realistic development steps.
+
+Expected output:
+- recommended sequence;
+- first 1-3 tasks;
+- risks;
+- what to postpone.
+```
+
+### Implementation Prompt
+
+```text
+Mode:
+- Manager Mode
+
+Context:
+- Repository:
+- Current task objective:
+- Relevant files/areas:
+- Current stage:
+
+Task:
+Implement only the following change:
+
+Constraints:
+- Do not change unrelated files.
+- Do not redesign the architecture.
+- Keep the current style.
+- Update docs only if directly relevant.
+
+Verification:
+- Run the safest relevant tests/checks if possible.
+- If the environment prevents a check, explain exactly what failed and what should be run locally.
+
+Expected summary:
+- files changed;
+- behavior changed;
+- tests/checks run;
+- risks or follow-up notes.
+```
+
+### Review Prompt
+
+```text
+Review this change as a backend reviewer.
+
+Focus on:
+- correctness;
+- simplicity;
+- project fit;
+- error handling;
+- naming;
+- test gaps;
+- overengineering;
+- hidden behavior changes.
+
+Do not rewrite the whole solution.
+Give concrete comments and a short verdict.
+```
+
+### Pair Programmer Setup Prompt
+
+```text
+Pair Programmer Mode.
+
+Task: <task or document reference>
+
+Define the narrow scope and acceptance criteria, then end the turn.
+I will implement the first version and tell you when it is ready for review.
+```
+
+### Pair Programmer Review Prompt
+
+```text
+Pair Programmer Mode.
+
+Review this diff without replacing the whole solution.
+
+Focus on:
+- correctness;
+- simplicity;
+- idiomatic code;
+- test gaps;
+- hidden regressions;
+- naming and structure;
+- lessons for future practice.
+
+Expected output:
+- findings by severity;
+- minimal suggested fixes;
+- relevant learning notes;
+- what to practice next.
+```
+
+### Learning Prompt
+
+```text
+Tutor Mode.
+
+Topic:
+Current level:
+Task objective:
+
+Please provide:
+1. short explanation;
+2. common mistakes;
+3. small exercise;
+4. expected behavior;
+5. hints before the full solution.
+
+Do not write the final implementation.
+End the turn after the exercise and wait for my response.
+```
+
+## Anti-Patterns
+
+Avoid:
+
+- using a learning prompt but accepting generated code without practice;
+- asking for review and allowing automatic rewrites;
+- asking for implementation without defining scope;
+- creating a persistent goal that depends on user implementation or input;
+- using `/goal pause` instead of ending an interactive turn;
+- polling the repository while waiting for the user;
+- loading every linked document for a small scoped task;
+- mixing planning, teaching, implementation, refactoring, documentation, and validation in one task;
+- asking AI to improve everything;
+- accepting large diffs without review;
+- creating roadmaps faster than they can be executed;
+- treating explanations as proof of understanding;
+- polishing documentation while avoiding implementation;
+- adding new tools before finishing current tasks;
+- using Sol, Max, Ultra, or subagents by default for routine work;
+- trusting broad production-ready claims without verification;
+- turning every idea into a permanent document.
+
+## Practical Rule
+
+Use AI to:
+
+- clarify;
+- accelerate scoped work;
+- review;
+- document;
+- learn;
+- ship verified changes.
+
+Do not use AI to:
+
+- avoid thinking;
+- avoid coding;
+- avoid debugging;
+- avoid responsibility.
