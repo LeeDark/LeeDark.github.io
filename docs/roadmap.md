@@ -11,7 +11,7 @@ This roadmap tracks practical work for the Hugo personal site. It is intentional
 - `public/` and `resources/_gen/` are generated output and should not be edited manually.
 - `themes/basic/` and `themes/ananke/` are present but not enabled.
 
-## Stage 1: Baseline And Public Readiness
+## Stage 1: Baseline And Public Readiness — Complete
 
 Goal: keep the site simple, understandable, and safe to change while preparing it for a first solid public version.
 
@@ -26,13 +26,19 @@ Action items:
 7. Add an explicit page description to the homepage so its meta description does not fall back to the full page summary.
 8. Refine `og:type` in `baseof.html`: use `article` for blog posts and `website` for the homepage, regular pages, and section pages.
 
-## Stage 2: Projects
+Completed outcomes:
+
+- Replaced the placeholder post with `Why I Built This Site with Hugo`.
+- Added an explicit homepage description and context-appropriate Open Graph types.
+- Updated the GitHub Pages workflow to Hugo Extended `0.164.0` and Dart Sass `1.102.0`.
+
+## Stage 2: Projects — Active
 
 Goal: add a real Projects page that explains selected repositories as portfolio evidence, not just as links.
 
 Action items:
 
-1. Decide whether `Projects` should start as `content/projects.md` or `content/projects/_index.md`.
+1. Create `content/projects/_index.md`. A section page supports the initial portfolio page and leaves room for project-specific case studies.
 2. Add a short list of selected projects with purpose, stack, status, and GitHub links.
 3. Link Projects from the homepage and navigation only when the page has useful content.
 
@@ -58,9 +64,7 @@ Action items:
 
 ## Deferred Decisions
 
-These are useful, but not required for Stage 1.
+These are useful, but not required for the current stage.
 
 - Evaluate `themes/`: remove unused themes, keep them as references, or plan a real theme step later.
-- Consider whether the root should have a short `README.md` for repository onboarding.
-- Decide whether `docs/project-overview.md` is enough or whether a separate `docs/project-context.md` would add value.
 - Consider partial templates for repeated head, navigation, or footer markup after the current structure becomes limiting.

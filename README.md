@@ -57,6 +57,7 @@ hugo --gc --minify
 ## Development Notes
 
 The production-oriented site is developed from `main`. A separate `book` branch is used for Hugo learning exercises, and useful work from that branch is moved back into `main` only as focused changes.
+Stage work uses focused short-lived branches; `stage-2` is preparing the Projects section.
 
 No Hugo theme is currently enabled in `hugo.toml`. The active site uses the root `layouts/` and `assets/` files.
 
@@ -66,3 +67,5 @@ No Hugo theme is currently enabled in `hugo.toml`. The active site uses the root
 - `docs/project-context.md` - working decisions, branch workflow, and source-of-truth rules.
 - `docs/roadmap.md` - current roadmap and deferred decisions.
 - `docs/task-history.md` - concise history of completed site tasks.
+
+Stage 1 public readiness is complete. The current focus is Stage 2: a Projects section that explains selected repositories as portfolio evidence and can grow into project case studies.

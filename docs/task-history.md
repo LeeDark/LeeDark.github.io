@@ -59,3 +59,13 @@ Added `docs/project-context.md` for project decisions, branch workflow, source-o
 ## Task 15: Portfolio README
 
 Added a root `README.md` as a public-facing repository overview for the personal Hugo site, including site purpose, visible engineering choices, tech stack, local commands, workflow notes, and links to supporting docs.
+
+## Stage 1: Sessions 2–4
+
+- Published the first real Hugo post and removed the obsolete placeholder post.
+- Added a homepage description and correct Open Graph types.
+- Updated the GitHub Pages CI toolchain and removed unused setup steps.
+
+## Task 16: Stage 2 Documentation Baseline
+
+Created the `stage-2` working branch and updated the project documentation to record that Stage 1 is complete and that the active next task is a Projects section. The planned Projects page will use `content/projects/_index.md`, leaving room for project-specific case studies later.

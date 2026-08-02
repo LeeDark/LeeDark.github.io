@@ -51,7 +51,7 @@ title = '{{ replace .File.ContentBaseName "-" " " | title }}'
 
 Set `draft = false` when a post is ready to publish.
 
-Top-level pages currently live directly in `content/`, including `about.md`, `contact.md`, and `resume.md`.
+Top-level pages currently live directly in `content/`, including `about.md`, `contact.md`, and `resume.md`. The Projects section is planned at `content/projects/_index.md`, which can later contain individual project case studies.
 
 ## Styles And Assets
 
@@ -65,3 +65,4 @@ Use `static/` for assets that should be copied as-is into the published site. Us
 - Preserve the current simple layout and navigation unless a task explicitly asks for design changes.
 - Do not edit generated output in `public/` or `resources/_gen/`.
 - Run a Hugo build after template, style, config, or content changes when possible.
+- Use a focused working branch for a roadmap stage, and merge it into `main` only after review.

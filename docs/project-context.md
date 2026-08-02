@@ -12,6 +12,7 @@ The site should work as a small professional home page and technical writing bas
 
 - `main` is the production-oriented branch for the real personal site.
 - `book` is a Hogan learning branch for Hugo exercises and experiments.
+- `stage-2` is the short-lived working branch for the Projects stage; merge it into `main` only after the stage work is reviewed.
 - Useful work from `book` should move into `main` only as focused, reviewed changes.
 - Jain book work is kept in the separate `LeeDark/acme-corporation` repository.
 
@@ -52,9 +53,9 @@ Current public pages:
 
 Near-term content priorities:
 
-- remove or replace placeholder blog content;
-- add a real first technical post;
-- add a Projects page only when it has useful project descriptions;
+- complete the Projects section with useful project descriptions;
+- use `content/projects/_index.md` so focused case studies can be added under the section later;
+- add a first case study after Projects establishes the portfolio context;
 - add Notes only when there are several short note ideas ready.
 
 Avoid promising empty sections from the homepage or navigation.
