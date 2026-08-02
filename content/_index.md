@@ -2,6 +2,7 @@
 date = '2026-01-11T11:55:22+02:00'
 draft = false
 title = 'Home'
+description = 'A personal site for Go backend engineering, technical writing, and practical software projects.'
 +++
 
 This site collects my professional background, selected technical notes, and links to the projects I use for Go backend practice and reference.
