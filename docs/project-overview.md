@@ -35,7 +35,7 @@ Build the production site:
 hugo --gc --minify
 ```
 
-The GitHub Pages workflow uses Hugo Extended `0.152.2` and builds with `hugo --gc --minify`.
+The GitHub Pages workflow uses Hugo Extended `0.164.0` and builds with `hugo --gc --minify`.
 
 ## Adding Content
 
